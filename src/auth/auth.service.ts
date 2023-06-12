@@ -1,4 +1,4 @@
-import {Injectable, ForbiddenException} from "@nestjs/common";
+import {ForbiddenException, Injectable} from "@nestjs/common";
 import {PrismaService} from "../prisma/prisma.service";
 import {PrismaClientKnownRequestError} from '@prisma/client/runtime';
 import {AuthDto} from "./dto";
@@ -65,6 +65,7 @@ export class AuthService {
                 'Credentials incorrect',
             );
 
-        return user;
+        const {id, email} = user;
+        return {id, email};
     }
 }
